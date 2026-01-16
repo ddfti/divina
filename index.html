@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ótica Bruna Leivas - Divina Visão</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script async src="//www.instagram.com/embed.js"></script>
+    
+    <style>
+        :root {
+            --antique-white: #EDE5D3; /* */
+            --pinecone: #655248;      /* */
+            --iced-coffee: #B69573;   /* */
+        }
+
+        body { background-color: var(--antique-white); font-family: 'Montserrat', sans-serif; color: var(--pinecone); }
+        header { background-color: var(--pinecone); }
+        .font-elegant { font-family: 'Playfair Display', serif; }
+        
+        .hero-section {
+            height: 65vh;
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Efeito Divino WhatsApp */
+        @keyframes border-glow {
+            0% { box-shadow: 0 0 0 0px rgba(37, 211, 102, 0.7); }
+            50% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0px rgba(37, 211, 102, 0); }
+        }
+        .whatsapp-float {
+            position: fixed; width: 65px; height: 65px; bottom: 40px; right: 40px;
+            background-color: #25d366; color: #FFF; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            z-index: 100; animation: border-glow 2s infinite; transition: 0.5s;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 60px 30px rgba(255, 255, 255, 0.9);
+        }
+
+        .filter-btn.active { background-color: var(--iced-coffee); color: white; border-color: var(--iced-coffee); }
+        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 200; align-items: center; justify-content: center; backdrop-filter: blur(8px); }
+        .modal.active { display: flex; }
+
+        /* Estilo para garantir que o Instagram não fique invisível */
+        .instagram-card { min-height: 400px; background: white; border-radius: 12px; overflow: hidden; border: 1px solid rgba(0,0,0,0.05); }
+    </style>
+</head>
+<body>
+
+    <header class="py-6 px-10 flex items-center text-white sticky top-0 z-50 shadow-xl">
+        <div class="flex items-center gap-4">
+            <div class="w-12 h-12 border-2 border-white rounded-full flex items-center justify-center font-elegant text-xl">BL</div>
+            <div>
+                <h1 class="text-lg font-elegant uppercase tracking-widest leading-none">Bruna Leivas</h1>
+                <p class="text-[9px] tracking-[0.4em] uppercase opacity-70">Divina Visão</p>
+            </div>
+        </div>
+    </header>
+
+    <section id="hero" class="hero-section text-center text-white px-4">
+        <div class="bg-black/20 p-10 rounded-2xl backdrop-blur-md">
+            <h2 id="hero-title" class="text-5xl md:text-6xl font-elegant italic"></h2>
+            <p id="hero-sub" class="text-xs md:text-sm uppercase tracking-[0.4em] mt-4"></p>
+        </div>
+    </section>
+
+    <main class="max-w-7xl mx-auto px-4 py-20">
+        <div id="filter-bar" class="flex flex-wrap justify-center gap-4 mb-16"></div>
+        <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12"></div>
+    </main>
+
+    <section class="bg-white/40 py-20 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="font-elegant text-4xl text-[#655248]">Divina Inspiração</h2>
+                <p class="text-[10px] uppercase tracking-widest opacity-60 mt-2 italic">ACOMPANHE NOSSO INSTAGRAM</p>
+            </div>
+            <div id="insta-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                </div>
+        </div>
+    </section>
+
+    <div id="modal" class="modal p-4" onclick="closeModal()">
+        <div class="bg-white max-w-4xl w-full rounded-3xl overflow-hidden relative shadow-2xl flex flex-col md:flex-row" onclick="event.stopPropagation()">
+            <button class="absolute top-6 right-6 text-3xl font-light" onclick="closeModal()">&times;</button>
+            <div id="modal-body" class="flex flex-col md:flex-row w-full"></div>
+        </div>
+    </div>
+
+    <a href="#" id="wa-link" class="whatsapp-float" target="_blank">
+        <svg fill="currentColor" width="35" height="35" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.588-5.946 0-6.556 5.332-11.888 11.887-11.888 3.18 0 6.17 1.237 8.415 3.483 2.245 2.245 3.482 5.234 3.482 8.411 0 6.557-5.332 11.892-11.887 11.892-2.018 0-4.001-.51-5.753-1.479l-6.244 1.69zm5.862-4.705l.419.248c1.5.888 3.239 1.356 5.021 1.356 5.473 0 9.927-4.453 9.927-9.922 0-2.653-1.033-5.147-2.908-7.022-1.875-1.875-4.37-2.908-7.022-2.908-5.474 0-9.928 4.454-9.928 9.923 0 1.905.534 3.765 1.545 5.378l.278.442-.997 3.641 3.725-.974z"/></svg>
+    </a>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        /**
+         * ⚙️ CONFIGURAÇÃO DE MÍDIA E PRODUTOS
+         * Salve suas fotos na pasta 'midia'
+         */
+        const DATA = {
+            config: {
+                whatsapp: "5551991444498",
+                heroImg: "midia/hero.jpg",
+                heroTitle: "A Clareza da Elegância",
+                heroSub: "Ótica Bruna Leivas - Divina Visão"
+            },
+            categorias: ["Solar", "Grau", "Grifes"],
+            produtos: [
+                {
+                    id: "01",
+                    cat: "Solar",
+                    nome: "Prada Baroque",
+                    descC: "Um ícone de luxo e sofisticação.",
+                    descL: "Lentes com proteção UV total e armação em acetato premium. O design barroco nas hastes é a assinatura desta peça divina.",
+                    fotos: ["midia/p1_1.jpg", "midia/p1_2.jpg"]
+                },
+                {
+                    id: "02",
+                    cat: "Grau",
+                    nome: "Ray-Ban Vista",
+                    descC: "Conforto visual para o dia a dia.",
+                    descL: "Estrutura leve em titânio. Perfeita para quem busca durabilidade sem abrir mão da estética clássica.",
+                    fotos: ["midia/p2_1.jpg", "midia/p2_2.jpg"]
+                }
+            ],
+            // Configuração dos posts do Instagram
+            instagram: [
+                {
+                    url: "https://www.instagram.com/oticabrunaleivas/p/DTQjkkNiUNv/",
+                    capaLocal: "midia/insta_post1.jpg" // Salve a foto do post aqui para garantir que apareça!
+                },
+                {
+                    url: "https://www.instagram.com/oticabrunaleivas/p/DBR-X2VuB_h/",
+                    capaLocal: "midia/insta_post2.jpg"
+                },
+                {
+                    url: "https://www.instagram.com/oticabrunaleivas/p/C_nS6EWuD7_/",
+                    capaLocal: "midia/insta_post3.jpg"
+                }
+            ]
+        };
+
+        function init() {
+            // Hero
+            const h = document.getElementById('hero');
+            h.style.backgroundImage = `linear-gradient(rgba(101,82,72,0.5), rgba(101,82,72,0.5)), url('${DATA.config.heroImg}')`;
+            document.getElementById('hero-title').innerText = DATA.config.heroTitle;
+            document.getElementById('hero-sub').innerText = DATA.config.heroSub;
+            document.getElementById('wa-link').href = `https://wa.me/${DATA.config.whatsapp}`;
+
+            renderFilters();
+            renderGrid(DATA.produtos);
+            renderInsta();
+        }
+
+        function renderFilters() {
+            const container = document.getElementById('filter-bar');
+            container.innerHTML = `<button class="filter-btn active px-8 py-2 rounded-full border border-[#655248] text-[10px] uppercase font-bold" onclick="filter('Todos', this)">Todos</button>`;
+            DATA.categorias.forEach(c => {
+                container.innerHTML += `<button class="filter-btn px-8 py-2 rounded-full border border-[#655248] text-[10px] uppercase font-bold" onclick="filter('${c}', this)">${c}</button>`;
+            });
+        }
+
+        function filter(cat, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const filtered = cat === 'Todos' ? DATA.produtos : DATA.produtos.filter(p => p.cat === cat);
+            renderGrid(filtered);
+        }
+
+        function renderGrid(lista) {
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = '';
+            lista.forEach(p => {
+                const el = document.createElement('div');
+                el.className = "bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-black/5 group";
+                el.innerHTML = `
+                    <div class="swiper swiper-${p.id}">
+                        <div class="swiper-wrapper">
+                            ${p.fotos.map(f => `<div class="swiper-slide"><img src="${f}" class="w-full h-80 object-cover" onerror="this.src='https://placehold.co/600x600?text=Bruna+Leivas'"></div>`).join('')}
+                        </div>
+                    </div>
+                    <div class="p-8 text-center">
+                        <span class="text-[10px] text-[#B69573] font-bold uppercase tracking-widest">${p.cat} | ID ${p.id}</span>
+                        <h3 class="font-elegant text-2xl my-3 group-hover:text-[#B69573] transition-colors">${p.nome}</h3>
+                        <p class="text-[11px] text-gray-400 mb-8">${p.descC}</p>
+                        <button onclick="openModal('${p.id}')" class="w-full py-4 border border-[#655248] text-[#655248] text-[10px] uppercase font-bold tracking-widest hover:bg-[#655248] hover:text-white transition-all">Mais Detalhes</button>
+                    </div>
+                `;
+                grid.appendChild(el);
+                new Swiper(`.swiper-${p.id}`, { loop: true, autoplay: { delay: 3000 }, effect: 'fade' });
+            });
+        }
+
+        function renderInsta() {
+            const grid = document.getElementById('insta-grid');
+            grid.innerHTML = '';
+            DATA.instagram.forEach(item => {
+                grid.innerHTML += `
+                    <div class="instagram-card relative group cursor-pointer" onclick="window.open('${item.url}', '_blank')">
+                        <img src="${item.capaLocal}" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x500?text=Ver+no+Instagram'">
+                        <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity p-6 text-center">
+                            <p class="text-white text-[10px] uppercase tracking-[0.3em] mb-4">Divina Visão</p>
+                            <span class="text-white border border-white px-6 py-2 text-[10px] uppercase font-bold">Ver Post Original</span>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function openModal(id) {
+            const p = DATA.produtos.find(i => i.id === id);
+            const body = document.getElementById('modal-body');
+            body.innerHTML = `
+                <div class="md:w-1/2 h-80 md:h-auto"><img src="${p.fotos[0]}" class="w-full h-full object-cover"></div>
+                <div class="md:w-1/2 p-12 flex flex-col justify-center">
+                    <span class="text-[#B69573] font-bold text-xs uppercase">${p.cat}</span>
+                    <h2 class="font-elegant text-4xl my-6">${p.nome}</h2>
+                    <p class="text-sm text-gray-500 mb-10 leading-relaxed font-light">${p.descL}</p>
+                    <a href="https://wa.me/${DATA.config.whatsapp}?text=Olá! Gostaria de mais detalhes sobre o ${p.nome} (ID ${p.id})" 
+                       target="_blank" class="bg-[#25d366] text-white text-center py-5 rounded-xl font-bold uppercase text-[10px] tracking-widest hover:shadow-lg transition-all">
+                       Solicitar via WhatsApp
+                    </a>
+                </div>
+            `;
+            document.getElementById('modal').classList.add('active');
+        }
+
+        function closeModal() { document.getElementById('modal').classList.remove('active'); }
+
+        window.onload = init;
+    </script>
+</body>
+</html>
